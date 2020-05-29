@@ -16,8 +16,7 @@ const firebaseConfig = {
     measurementId: "G-Y9TJXZG88L"
   };
 
-
-firebase.initializeApp(firebaseConfig)
+  
 const database = firebase.firestore();
 
 //--------------------
@@ -51,7 +50,7 @@ const initialState = {
   
 };
 
-export function LoginReducer (state = initialState, action){
+export function RegisterReducer (state = initialState, action){
 	const handler = ACTION_HANDLERS[action.type];
 
 	return handler ? handler(state, action) : state;
