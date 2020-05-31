@@ -44,16 +44,12 @@ export default class RegProcess extends React.Component{
         
         console.log(this.state)
 
-        database.collection('clients').add(userData)
-        .then(async() => {
-            await AsyncStorage.setItem('isLoggedIn', '1');
-            await AsyncStorage.setItem('id_number', userData.id_number);
-        })
+        database.collection('tms_users').add(userData)
         .then(()=>{
             this.props.getUserData(userData.id_number);
         })
         .then(()=>{
-            Actions.home();
+            //Actions.home();
         })
         .catch((err)=>{
             console.log(err)
@@ -64,7 +60,7 @@ export default class RegProcess extends React.Component{
         //this._bootstrapAsync();
         //setTimeout(this._bootstrapAsync, 5000);
         //this.props.registerUser('Hamdu');
-        //this._firstRegister();
+        this._firstRegister();
     }
 
     //fetch token from storage and navigate to appropriate screen
