@@ -14,12 +14,13 @@ const logo = require('../../../assets/img/sinalogo.jpg')
 export default class Login extends Component{
 
     state = {
-        picture: null
+        affiliate: 'partner',
+        rating: 0
     }
 
     _navigate = () => {
-        //let params = this.state
-        Actions.register()
+        let params = this.state
+        Actions.register({userInfo: params})
     }
 
     _login = async() => {

@@ -3,11 +3,13 @@ import { StyleSheet } from 'react-native';
 import { Actions, Scene, ActionConst } from "react-native-router-flux";
 import LoginContainer from './Login/Containers/LoginContainer'
 import RegisterContainer from './Register/Containers/RegisterContainer'
+import RegProcessContainer from './RegProcess/Containers/RegProcessContainer'
 
 const scenes = Actions.create(
 	<Scene key="root">
 		<Scene key="login" hideNavBar component={LoginContainer} title="Login"  initial/>
 		<Scene key="register" hideNavBar component={RegisterContainer} title="Register"  />
+		<Scene key="regprocess" hideNavBar component={RegProcessContainer} title="Registeration Process"  />
 	</Scene>
 
 );

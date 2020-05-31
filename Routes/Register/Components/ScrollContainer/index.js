@@ -9,6 +9,7 @@ import * as firebase from 'firebase';
 export default class ScrollContainer extends Component{
     constructor(props){
         super(props);
+        this.state = this.props.userInfo
     }
 
     _pickImage = async () => {
@@ -28,7 +29,7 @@ export default class ScrollContainer extends Component{
 
 
       _upload = async(img_src) => {
-            const response = await fetch(img_src);
+           const response = await fetch(img_src);
             const blob = await response.blob();
             var ref = firebase.storage().ref().child(this.state.id_number.toString() + '.jpg');
             var params = this.state
@@ -46,26 +47,23 @@ export default class ScrollContainer extends Component{
             })
             .catch((err)=>{
                 console.log(err)
-            })
-            
-             */ 
+            })*/ 
             if(ref.put(blob)){
                 console.log(params);
                 Actions.regprocess({userInfo: params});
             };
-            //console.log(param);
+            //console.log(this.state);
         }
 
-        state = {}
-
     render(){   
+        let { picture } = this.state;
         return(
             <ScrollView contentContainerStyle>
                 <View style={styles.formContainer}>
                     <TouchableOpacity
-                        style={{backgroundColor: '#eef0ef',
+                        style={{backgroundColor: '#141d48',
                         padding: 15,
-                        width: '45%',
+                        width: '100%',
                         borderRadius: 5,
                         flexDirection:'row',
                         alignSelf: 'flex-start',
@@ -73,11 +71,13 @@ export default class ScrollContainer extends Component{
                     }
                         onPress={this._pickImage}
                     >
-                        <Text>Pick an Image</Text>
+                        <Text style={{color: '#fff'}}>Pick an Image(User Image)</Text>
                     </TouchableOpacity>
 
-                    
-                    
+                    {
+                        picture && 
+                        <Image source={{uri: picture}} style={{width: 200, height:200, padding:10}}/>
+                    }
                     <Text style={styles.labels}>Fullname</Text>
                     <TextInput
                         style={styles.textInput}
@@ -86,29 +86,37 @@ export default class ScrollContainer extends Component{
                         value={this.state.fullname}
                     />
 
-                    <Text style={styles.labels}>Age</Text>
+                    <Text style={styles.labels}>Company Name</Text>
                     <TextInput
                         style={styles.textInput}
-                        placeholder='Age'
-                        keyboardType='number-pad'
-                        onChangeText={(age)=> this.setState({age})}
-                        value={this.state.age}
+                        placeholder='Name of Company'
+                        onChangeText={(companyName)=> this.setState({companyName})}
+                        value={this.state.companyName}
+                    />
+
+                    <Text style={styles.labels}>Residential Address</Text>
+                    <TextInput
+                        style={styles.textInput}
+                        multiline
+                        placeholder='Residential address'
+                        onChangeText={(resAddress)=> this.setState({resAddress})}
+                        value={this.state.resAddress}
+                    />
+
+                    <Text style={styles.labels}>House Number</Text>
+                    <TextInput
+                        style={styles.textInput}
+                        multiline
+                        placeholder='House Number'
+                        onChangeText={(houseNumber)=> this.setState({houseNumber})}
+                        value={this.state.houseNumber}
                     />
                 </View>
 
                 <View style={styles.formContainer2}>
-                    <Text style={styles.labels}>Client Firm</Text>
-                    <TextInput
-                        style={styles.textInput}
-                        placeholder='Input your firm name'
-                        onChangeText={(client)=> this.setState({client})}
-                        value={this.state.client}
-                    />
-
                     <Text style={styles.labels}>Identification Number</Text>
                     <TextInput
                         style={styles.textInput}
-                        keyboardType='number-pad'
                         placeholder='Input your id number'
                         onChangeText={(id_number)=> this.setState({id_number})}
                         value={this.state.id_number}
