@@ -15,6 +15,11 @@ class Home extends React.Component{
 		super(props);
 		}
 
+	componentDidMount(){
+		if( Object.entries(this.props.userData) < 1){
+			this.props.getUserData(this.props.idNumber)
+		}
+	}
 
 render(){
 		return(

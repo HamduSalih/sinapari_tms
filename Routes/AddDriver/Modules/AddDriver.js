@@ -24,12 +24,7 @@ const LONGITUDE_DELTA = 0.035;
 //---------------
 //Actions
 //---------------
-export function getUserData(idNumber){
-	var tmsCollection = database.collection('tms_users')
-	return(dispatch)=>{
-		
-	}
-}
+
 
 //--------------------
 //Action Handlers
@@ -43,7 +38,7 @@ const initialState = {
   region:{},
 };
 
-export function HomeReducer (state = initialState, action){
+export function AddDriverReducer (state = initialState, action){
 	const handler = ACTION_HANDLERS[action.type];
 
 	return handler ? handler(state, action) : state;

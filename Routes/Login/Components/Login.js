@@ -23,7 +23,31 @@ export default class Login extends Component{
         Actions.register({userInfo: params})
     }
 
-    _login = async() => {
+    _login = async(idNumber) => {
+        var tmsCollection = database.collection('tms_users')
+
+        tmsCollection.where('username', '==', this.state.username)
+        .where('password', '==', this.state.password)
+        .get()
+        .then(async(querySnapshot)=>{
+            querySnapshot.forEach(async(doc)=>{
+                idNumber = doc.data().id_number;
+            })
+        })
+        .then(async()=>{
+            Actions.home({idNumber: idNumber});
+        })
+        .catch((error)=>{
+            console.log(error)
+        })
+
+        /**if(userInfo.username === this.state.username && userInfo.password === this.state.password){
+            //alert('Logged In');
+            await AsyncStorage.setItem('isLoggedIn', '1');
+            this.props.navigation.navigate('Root');
+        }else{
+            alert('User info not corrected')
+        } */
     }
 
     render(){
