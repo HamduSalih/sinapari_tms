@@ -21,6 +21,7 @@ render(){
 			<Container>
 				<View style={{flex:1}}>
 					<MapContainer />
+					<NewJobButton />
 				</View>
 			</Container>
 		);

@@ -10,7 +10,9 @@ const styles = {
     iconButton:{
         position: 'absolute',
         top: iconTopSpace,
-        left: iconLeftSpace
+        left: iconLeftSpace,
+        backgroundColor: '#141d48',
+        borderRadius: 50
     }
 }
 

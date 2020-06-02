@@ -8,10 +8,10 @@ import HomeContainer from './Home/Containers/HomeContainer'
 
 const scenes = Actions.create(
 	<Scene key="root">
-		<Scene key="login" hideNavBar component={LoginContainer} title="Login"  initial/>
+		<Scene key="login" hideNavBar component={LoginContainer} title="Login"  />
 		<Scene key="register" hideNavBar component={RegisterContainer} title="Register"  />
 		<Scene key="regprocess" hideNavBar component={RegProcessContainer} title="Registeration Process"  />
-		<Scene key="home" hideNavBar component={HomeContainer} title="Home"  />
+		<Scene key="home" hideNavBar component={HomeContainer} title="Home"  initial/>
 	</Scene>
 
 );

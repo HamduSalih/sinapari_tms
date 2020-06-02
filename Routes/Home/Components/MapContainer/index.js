@@ -15,7 +15,22 @@ export const MapContainer = ({
             longitude: -1.1188077,
             latitudeDelta: 4,
             longitudeDelta: 4
-        }
+		}
+		
+		const testCoords = [
+			{
+				latitude: 8.1378253,
+            	longitude: -0.8189397
+			},
+			{
+				latitude: 9.3911457,
+            	longitude: -2.7061143
+			},
+			{
+				latitude: 5.8861923,
+            	longitude: -0.6566057
+			}
+		]
 
 		return(
 			<MapView
@@ -26,6 +41,17 @@ export const MapContainer = ({
                 showsMyLocationButton={true}
                 showsUserLocation={true}
 			>
+				{
+					testCoords.map((obj, index)=>{
+						return(
+							<MapView.Marker 
+								key={index}
+								coordinate={{latitude:obj.latitude, longitude:obj.longitude}}
+								pinColor='#141d48'
+							/>
+						)
+					})
+				}
 			</MapView>
 	)
 }
