@@ -39,6 +39,13 @@ const styles = {
         textAlign: 'center',
         fontSize: 15,
         color: 'white'
+    },
+    pickerInput:{
+        borderColor: '#141d48',
+        borderWidth: 1,
+        padding: 0,
+        borderRadius: 5,
+        marginBottom: 20
     }
 }
 
