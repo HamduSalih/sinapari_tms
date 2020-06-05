@@ -5,6 +5,7 @@ import { Actions } from 'react-native-router-flux';
 import Constants from 'expo-constants';
 import NewJobButton from './NewJobButton'
 import MapContainer from './MapContainer'
+import BottomTabContainer from '../../../Navigations/BottomTabContainer'
 
 const {width, height} = Dimensions.get("window");
 const sinaLogo = require("../../../assets/img/sinapari_blue.png");
@@ -16,9 +17,17 @@ class Home extends React.Component{
 		}
 
 	componentDidMount(){
-		if( Object.entries(this.props.userData) < 1){
+		if( Object.entries(this.props.userData) < 1 ){
 			this.props.getUserData(this.props.idNumber)
 		}
+	}
+
+	async componentWillReceiveProps(nextProps){
+		var companyName = await (nextProps.userData).companyName
+		if(this.props.drivers !== nextProps.drivers){
+			this.props.getDrivers(companyName)
+		}
+		//console.log((nextProps.userData).companyName)
 	}
 
 render(){
@@ -28,6 +37,7 @@ render(){
 					<MapContainer />
 					<NewJobButton />
 				</View>
+				<BottomTabContainer />
 			</Container>
 		);
 

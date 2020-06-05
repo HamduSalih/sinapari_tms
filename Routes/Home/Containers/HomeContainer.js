@@ -1,14 +1,17 @@
 import { connect } from "react-redux";
 import Home from "../Components/Home";
 import {
-	getUserData
+	getUserData,
+	getDrivers
 } from "../Modules/Home";
 //states from modules home.js
 const mapStateToProps = (state) => ({
 	userData: state.regprocess.userData || {},
+	drivers: state.home.drivers || []
 });
 
 const mapActionCreators = {
-	getUserData
+	getUserData,
+	getDrivers
 };
 export default connect(mapStateToProps, mapActionCreators)(Home);

@@ -13,7 +13,8 @@ const database = firebase.firestore();
 //THESE ARE ACTIONS CONSTANTS THEY SHOULD BE CALLED 
 //IN actionConstants.js
 const { 
-	GET_USER_DATA
+	GET_USER_DATA,
+	GET_DRIVERS
 	  } = constants;
 
 
@@ -44,6 +45,26 @@ export function getUserData(idNumber){
 	}
 }
 
+export function getDrivers(companyName){
+	var tmsDrivers = database.collection('tms_drivers')
+	var drivers = []
+	return(dispatch)=>{
+		tmsDrivers.where('company', '==', companyName)
+		.get()
+		.then((querySnapshot)=>{
+			querySnapshot.forEach((doc)=>{
+				drivers.push(doc.data())
+			})
+		})
+		.then(()=>{
+			dispatch({
+				type:GET_DRIVERS,
+				payload: drivers
+			})
+		})
+	}
+}
+
 //--------------------
 //Action Handlers
 //--------------------
@@ -55,8 +76,17 @@ function handleGetUserData(state, action){
 	})
 }
 
+function handleGetDrivers( state, action ){
+	return update( state, {
+		drivers:{
+			$set: action.payload
+		}
+	})
+}
+
 const ACTION_HANDLERS = {
-	GET_USER_DATA:handleGetUserData 
+	GET_USER_DATA:handleGetUserData,
+	GET_DRIVERS:handleGetDrivers
 }
 const initialState = {
   region:{},

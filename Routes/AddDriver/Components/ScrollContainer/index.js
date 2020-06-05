@@ -2,6 +2,11 @@ import React from 'react'
 import { View, Text, ScrollView, TextInput, TouchableOpacity, Picker } from 'react-native'
 import { Container } from 'native-base'
 import styles from './ScrollStyles'
+import * as firebase from 'firebase';
+import '@firebase/firestore';
+import { Actions } from 'react-native-router-flux'
+
+const database = firebase.firestore();
 
 export default class ScrollContainer extends React.Component{
     constructor(props){
@@ -12,6 +17,37 @@ export default class ScrollContainer extends React.Component{
         affiliate: 'under_partner',
         rating: 0,
         company: this.props.userData.companyName
+    }
+
+    _registerDriver = () => {
+        var details = this.state
+        const userData = details
+        const jobsInfo = {
+            distanceTravelled: null,
+            jobCompleted: null,
+            reports: null,
+            status: 'inactive'
+        }
+        const locations = {
+            id: this.state.driver_license,
+            lat: 0.000000,
+            long: 0.000000,
+            geocode: null
+        }
+
+        database.collection('tms_drivers').doc(this.state.driver_license).set(userData)
+        .then(()=>{
+            database.collection('jobsInfo').doc(this.state.driver_license).set(jobsInfo)
+        })
+        .then(()=>{
+            database.collection('locations').doc(this.state.driver_license).set(locations);
+        })
+        .then(()=>{
+            alert('Driver added. Ask driver to login to update locations')
+        })
+        .then(()=>{
+            Actions.home()
+        })
     }
 
     render(){
@@ -30,8 +66,8 @@ export default class ScrollContainer extends React.Component{
                     <TextInput
                         style={styles.textInput}
                         placeholder='Driver Licence'
-                        onChangeText={(driverLicense)=> this.setState({driverLicense})}
-                        value={this.state.driverLicense}
+                        onChangeText={(driver_license)=> this.setState({driver_license})}
+                        value={this.state.driver_license}
                     />
                     <Text style={styles.labels}>Vehicle Type</Text>
                     
@@ -118,7 +154,7 @@ export default class ScrollContainer extends React.Component{
                 </View>
                 <View style={styles.buttonContainer}>
                         <TouchableOpacity style={styles.userButton}
-                            onPress={()=>console.log(this.state)}
+                            onPress={this._registerDriver}
                         >
                             <Text style={styles.buttonText}>Register</Text>
                         </TouchableOpacity>
