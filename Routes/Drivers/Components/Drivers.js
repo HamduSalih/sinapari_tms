@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
 import { View, Text } from 'react-native'
 import { Container } from 'native-base'
+import RenderJobs from './RenderJobs'
 
 export default class Drivers extends Component{
     render(){
         return(
-            <View>
-                <Text>Hello World</Text>
+            <View style={{flex:1}}>
+                <RenderJobs 
+                    drivers={this.props.drivers}
+                />
             </View>
         )
     }

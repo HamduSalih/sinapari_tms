@@ -5,6 +5,7 @@ import { RegProcessReducer as regprocess } from '../Routes/RegProcess/Modules/Re
 import { HomeReducer as home } from '../Routes/Home/Modules/Home'
 import { AddDriverReducer as adddriver } from '../Routes/AddDriver/Modules/AddDriver'
 import { DriversReducer as drivers } from '../Routes/Drivers/Modules/Drivers'
+import { DriverInfoReducer as driverInfo } from '../Routes/DriverInfo/Modules/DriverInfo'
 
 export const makeRootReducer = () => {
 	return combineReducers({
@@ -13,7 +14,8 @@ export const makeRootReducer = () => {
 		regprocess,
 		home,
 		adddriver,
-		drivers
+		drivers,
+		driverInfo
 	});
 }
 

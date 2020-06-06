@@ -24,7 +24,7 @@ class Home extends React.Component{
 
 	async componentWillReceiveProps(nextProps){
 		var companyName = await (nextProps.userData).companyName
-		if(this.props.drivers !== nextProps.drivers){
+		if( (this.props.drivers).length < 1 ){
 			this.props.getDrivers(companyName)
 		}
 		//console.log((nextProps.userData).companyName)

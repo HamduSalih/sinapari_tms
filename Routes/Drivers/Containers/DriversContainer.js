@@ -5,7 +5,8 @@ import {
 } from "../Modules/Drivers";
 //states from modules home.js
 const mapStateToProps = (state) => ({
-	userData: state.home.userData || {}
+	userData: state.home.userData || {},
+	drivers: state.home.drivers || []
 });
 
 const mapActionCreators = {

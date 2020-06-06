@@ -7,6 +7,7 @@ import RegProcessContainer from './RegProcess/Containers/RegProcessContainer'
 import HomeContainer from './Home/Containers/HomeContainer'
 import AddDriverContainer from './AddDriver/Containers/AddDriverContainer'
 import DriversContainer from './Drivers/Containers/DriversContainer'
+import DriverInfoContainer from './DriverInfo/Containers/DriverInfoContainer'
 
 const scenes = Actions.create(
 	<Scene key="root">
@@ -16,6 +17,7 @@ const scenes = Actions.create(
 		<Scene key="home" type={ActionConst.RESET} hideNavBar component={HomeContainer} title="Home" />
 		<Scene key="addDriver" component={AddDriverContainer} title="Add Driver"/>
 		<Scene key="drivers" component={DriversContainer} title="My Drivers"/>
+		<Scene key="driverInfo" hideNavBar component={DriverInfoContainer} title="Current Driver"/>
 	</Scene>
 
 );
