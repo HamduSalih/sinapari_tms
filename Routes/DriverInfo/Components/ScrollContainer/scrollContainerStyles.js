@@ -6,7 +6,8 @@ const styles = {
         backgroundColor: 'white',
     },
     scrollStyle:{
-      paddingHorizontal: 15
+      paddingHorizontal: 15,
+      flex:1
     },
     pickUpTime: {
       backgroundColor: '#141d48',

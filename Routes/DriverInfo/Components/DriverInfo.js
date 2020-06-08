@@ -3,6 +3,7 @@ import {View, Text, Linking} from "react-native";
 import { Container }  from "native-base";
 import { Actions } from 'react-native-router-flux';
 import MapContainer from './MapContainer'
+import ScrollContainer from './ScrollContainer'
 
 
 const sinaLogo = require("../../../assets/img/sinapari_blue.png");
@@ -28,6 +29,9 @@ render(){
 						<MapContainer 
 							region={this.props.region} />
 					}
+					<ScrollContainer 
+						driverInfo={this.props.driverInfo}
+						currentJob={this.props.currentJob}/>
 				</View>
 			</Container>
 		);
