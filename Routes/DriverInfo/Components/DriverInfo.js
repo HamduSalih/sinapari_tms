@@ -2,6 +2,7 @@ import React from "react";
 import {View, Text, Linking} from "react-native";
 import { Container }  from "native-base";
 import { Actions } from 'react-native-router-flux';
+import MapContainer from './MapContainer'
 
 
 const sinaLogo = require("../../../assets/img/sinapari_blue.png");
@@ -15,13 +16,18 @@ class DriverInfo extends React.Component{
 	componentDidMount(){
 		var driverInfo = this.props.driverInfo
 		console.log(driverInfo)
+		this.props.getDriverLocation(driverInfo.driver_license)
 	}
 
 render(){
 		return(
 			<Container>
 				<View style={{flex:1}}>
-					<Text>Hello World</Text>
+					{
+						this.props.region &&
+						<MapContainer 
+							region={this.props.region} />
+					}
 				</View>
 			</Container>
 		);

@@ -25,6 +25,7 @@ const database = firebase.firestore();
 //THESE ARE ACTIONS CONSTANTS THEY SHOULD BE CALLED 
 //IN actionConstants.js
 const {
+  DRIVER_LOCATION
 	  } = constants;
 
 
@@ -35,16 +36,43 @@ const LONGITUDE_DELTA = 0.035;
 //---------------
 //Actions
 //---------------
+export function getDriverLocation(driverId){
+  //we will get location of driver from locations collections
+	//using driver id from the biddetails
 
+	var locationCollection = database.collection('locations').doc(driverId)
+	var region 
+	return(dispatch)=>{
+		 locationCollection
+		 .onSnapshot((doc)=>{
+			dispatch({
+				type:DRIVER_LOCATION,
+				payload: {
+					latitude: (doc.data()).lat,
+					longitude: (doc.data()).long,
+					latitudeDelta: LATITUDE_DELTA,
+					longitudeDelta: LONGITUDE_DELTA
+				}
+			})
+		 })
+	 }
+}
 
 
 //--------------------
 //Action Handlers
 //--------------------
+function handleGetDriverLocation(state, action){
+  return update(state, {
+    region:{
+      $set: action.payload
+    }
+  })
+}
 
 
 const ACTION_HANDLERS = {
-	
+	DRIVER_LOCATION:handleGetDriverLocation
 }
 
 const initialState = {
