@@ -12,6 +12,7 @@ import * as firebase from 'firebase';
 import '@firebase/firestore';
 import * as Random from 'expo-random';
 import { Actions } from 'react-native-router-flux';
+import { Card } from 'react-native-elements';
 
 const database = firebase.firestore()
 var bidsContainer = []
@@ -21,9 +22,9 @@ class ScrollContainer extends Component{
         bidId: null,
         amount: null,
         jobId: this.props.jobDetails.jobId,
-        driverId: null,
-        driverName: this.props.userData.fullname,
-        truck_number: this.props.userData.truck_number,
+        driverId: 'N/A',
+        driverName: this.props.userData.companyName,
+        truck_number: 'N/A',
         rating: this.props.userData.rating,
         phone_number: this.props.userData.phone_number,
         client_number: this.props.jobDetails.client_number,
@@ -43,6 +44,7 @@ class ScrollContainer extends Component{
             time: this.props.jobDetails.dropOff.Time
         },
         client: this.props.jobDetails.client,
+        number_of_trucks: this.props.jobDetails.number_of_trucks,
         tripStatus: null,
         ownerStatus: null
     };
@@ -67,7 +69,6 @@ class ScrollContainer extends Component{
         }
         const driverId = await AsyncStorage.getItem('driverLicense');
         this.setState({bidId: bidId});
-        this.setState({driverId: driverId});
 
     }
 
@@ -78,12 +79,13 @@ class ScrollContainer extends Component{
     _navigate = () => {
         let param = this.state;
         if(bidsContainer.length > 0){
-            alert('')
+            alert('Job already assigned')
         } else if(this.state.amount === null || this.state.amount === ' ' || this.state.amount === ' '){
             alert('Please add your price');
         }
         else{
-            Actions.bidProcess({jobDetails: param});
+            //Actions.bidProcess({bidDetails: param});
+            console.log(param)
         }
     }
 
@@ -93,63 +95,67 @@ class ScrollContainer extends Component{
         return(
             <View
                 style={styles.container}>
-                <ScrollView contentContainerStyle={{padding:15}}>
-                    <View style = {styles.distanceContainer}>
-                        <View style={{borderRightColor: 'grey', 
-                            borderRightWidth: 1,
-                            paddingRight: 10}}>
-                            <Text style={styles.distanceHeader}>Total Distance</Text>
-                            <Text style={styles.distanceFigure}>{jobDetails.distance}</Text>
+                <ScrollView contentContainerStyle={{backgroundColor:'#eef0ef'}}>
+                    <Card>
+                        <View style = {styles.distanceContainer}>
+                            <View style={{borderRightColor: 'grey', 
+                                borderRightWidth: 1,
+                                paddingRight: 10}}>
+                                <Text style={styles.distanceHeader}>Total Distance</Text>
+                                <Text style={styles.distanceFigure}>{jobDetails.distance}</Text>
+                            </View>
+                            <View style={{paddingLeft: 10}}>
+                                <Text style={styles.distanceHeader}>Total Weight (TONNES)</Text>
+                                <Text style={styles.distanceFigure}>{jobDetails.weight}</Text>
+                            </View>
                         </View>
-                        <View style={{paddingLeft: 10}}>
-                            <Text style={styles.distanceHeader}>Total Weight (TONNES)</Text>
-                            <Text style={styles.distanceFigure}>{jobDetails.weight}</Text>
+                    </Card>
+                    <Card>
+                        <View style={styles.viewContainer}>
+                            <Text style={styles.distanceHeader}>TRUCK/TRAILER TYPE</Text>
+                            <Text style={styles.distanceFigure}>{jobDetails.trailerType} {jobDetails.vehicleType}</Text>
                         </View>
-                    </View>
-                    <View style={styles.viewContainer}>
-                        <Text style={styles.distanceHeader}>TRUCK/TRAILER TYPE</Text>
-                        <Text style={styles.distanceFigure}>{jobDetails.trailerType} {jobDetails.vehicleType}</Text>
-                    </View>
-                    <View style={styles.viewContainer}>
-                        <Text style={styles.distanceHeader}>REQUIREMENTS</Text>
-                        <Text style={styles.distanceFigure}>{jobDetails.accessories}</Text>
-                    </View>
-                    <View style={styles.viewContainer}>
-                        <Text style={styles.distanceHeader}>SHIPPER</Text>
-                        <Text style={styles.distanceFigure}>{jobDetails.client}</Text>
-                    </View>
-                    <View style={styles.viewContainer}>
-                        <Text style={styles.distanceHeader}>LOAD DESCRIPTION</Text>
-                        <Text style={styles.distanceFigure}>{jobDetails.goodsDescription}</Text>
-                    </View>
+                        <View style={styles.viewContainer}>
+                            <Text style={styles.distanceHeader}>REQUIREMENTS</Text>
+                            <Text style={styles.distanceFigure}>{jobDetails.accessories}</Text>
+                        </View>
+                        <View style={styles.viewContainer}>
+                            <Text style={styles.distanceHeader}>SHIPPER</Text>
+                            <Text style={styles.distanceFigure}>{jobDetails.client}</Text>
+                        </View>
+                        <View style={styles.viewContainer}>
+                            <Text style={styles.distanceHeader}>LOAD DESCRIPTION</Text>
+                            <Text style={styles.distanceFigure}>{jobDetails.goodsDescription}</Text>
+                        </View>
+                    </Card>
     
     
-                    <View style={{
-                        borderTopWidth: 1,
-                        borderTopColor: 'grey',
-                        paddingTop: 20
-                    }}>
-                        <View style = {styles.locView}>
-                            <FontAwesome style={styles.locIcon} size={20} name='dot-circle-o'/>
-                            <Text style={styles.locText}>{jobDetails.pickUp.address}</Text>
+                    <Card style={{
+                            paddingBottom: 20
+                        }}>
+                        <View>
+                            <View style = {styles.locView}>
+                                <FontAwesome style={styles.locIcon} size={20} name='dot-circle-o'/>
+                                <Text style={styles.locText}>{jobDetails.pickUp.address}</Text>
+                            </View>
+                            <View style={styles.locView}>
+                                <View style={{ 
+                                height:35,
+                                borderLeftWidth:2, 
+                                marginLeft:7}}/>
+                                <Text style={styles.dateStyle}>{new Date(jobDetails.pickUp.time * 1000).getDate() + ' ' + months[new Date(jobDetails.pickUp.time * 1000).getMonth()] + ' ' + new Date(jobDetails.pickUp.time * 1000).getFullYear() + ', ' + new Date(jobDetails.pickUp.time * 1000).getHours() + ':' + new Date(jobDetails.pickUp.time * 1000).getMinutes()}</Text>
+                            </View>
+                            <View style={styles.locView}>
+                                <Entypo style={styles.locIcon} size={17} name='circle'/>
+                                <Text>{jobDetails.dropOff.address}</Text>
+                            </View>
+                            <View style={styles.locView}>
+                                <View style={{
+                                marginLeft:7}}/>
+                                <Text style={styles.dateStyle}>{new Date(jobDetails.dropOff.Time * 1000).getDate() + ' ' + months[new Date(jobDetails.dropOff.Time * 1000).getMonth()] + ' ' + new Date(jobDetails.dropOff.Time * 1000).getFullYear() + ', ' + new Date(jobDetails.dropOff.Time * 1000).getHours() + ':' + new Date(jobDetails.dropOff.Time * 1000).getMinutes()}</Text>
+                            </View>
                         </View>
-                        <View style={styles.locView}>
-                            <View style={{ 
-                            height:35,
-                            borderLeftWidth:2, 
-                            marginLeft:7}}/>
-                            <Text style={styles.dateStyle}>{new Date(jobDetails.pickUp.time * 1000).getDate() + ' ' + months[new Date(jobDetails.pickUp.time * 1000).getMonth()] + ' ' + new Date(jobDetails.pickUp.time * 1000).getFullYear() + ', ' + new Date(jobDetails.pickUp.time * 1000).getHours() + ':' + new Date(jobDetails.pickUp.time * 1000).getMinutes()}</Text>
-                        </View>
-                        <View style={styles.locView}>
-                            <Entypo style={styles.locIcon} size={17} name='circle'/>
-                            <Text>{jobDetails.dropOff.address}</Text>
-                        </View>
-                        <View style={styles.locView}>
-                            <View style={{
-                            marginLeft:7}}/>
-                            <Text style={styles.dateStyle}>{new Date(jobDetails.dropOff.Time * 1000).getDate() + ' ' + months[new Date(jobDetails.dropOff.Time * 1000).getMonth()] + ' ' + new Date(jobDetails.dropOff.Time * 1000).getFullYear() + ', ' + new Date(jobDetails.dropOff.Time * 1000).getHours() + ':' + new Date(jobDetails.dropOff.Time * 1000).getMinutes()}</Text>
-                        </View>
-                    </View>
+                    </Card>
                 </ScrollView>
                 {/** add price input and bid button */}
                 <View

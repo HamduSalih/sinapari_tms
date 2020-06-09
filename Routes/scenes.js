@@ -21,7 +21,7 @@ const scenes = Actions.create(
 		<Scene key="drivers" component={DriversContainer} title="My Drivers"/>
 		<Scene key="driverInfo" hideNavBar component={DriverInfoContainer} title="Current Driver"/>
 		<Scene key="jobs" component={JobsContainer} title="Open Jobs"/>
-		<Scene key="jobDetails" component={JobDetailsContainer} title="Job Details"/>
+		<Scene key="jobDetails" hideNavBar component={JobDetailsContainer} title="Job Details"/>
 	</Scene>
 
 );
