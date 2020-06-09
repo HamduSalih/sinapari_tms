@@ -14,7 +14,8 @@ const database = firebase.firestore();
 //IN actionConstants.js
 const { 
 	GET_USER_DATA,
-	GET_DRIVERS
+	GET_DRIVERS,
+	GET_JOBS
 	  } = constants;
 
 
@@ -65,6 +66,26 @@ export function getDrivers(companyName){
 	}
 }
 
+export function getJobs(){
+	var jobsCollection = database.collection('jobs')
+	var jobs = []
+	return(dispatch)=>{
+		jobsCollection.where('status', '==', 'not live')
+		.get()
+		.then((querySnapshot)=>{
+			querySnapshot.forEach((doc)=>{
+				jobs.push(doc.data())
+			})
+		})
+		.then(()=>{
+			dispatch({
+				type:GET_JOBS,
+				payload: jobs
+			})
+		})
+	}
+}
+
 //--------------------
 //Action Handlers
 //--------------------
@@ -84,9 +105,18 @@ function handleGetDrivers( state, action ){
 	})
 }
 
+function handleGetJobs( state, action ){
+	return update( state, {
+		jobs:{
+			$set: action.payload
+		}
+	})
+}
+
 const ACTION_HANDLERS = {
 	GET_USER_DATA:handleGetUserData,
-	GET_DRIVERS:handleGetDrivers
+	GET_DRIVERS:handleGetDrivers,
+	GET_JOBS:handleGetJobs
 }
 const initialState = {
   region:{},

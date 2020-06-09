@@ -26,6 +26,12 @@ export default class BottomTab extends React.Component {
             subTitle:'',
             icon:'person-outline',
             sceneKey: 'drivers'
+        },
+        {
+            title:'Jobs',
+            subTitle:'',
+            icon:'work',
+            sceneKey: 'jobs'
         }
     ];
 

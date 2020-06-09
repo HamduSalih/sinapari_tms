@@ -20,6 +20,10 @@ class Home extends React.Component{
 		if( Object.entries(this.props.userData) < 1 ){
 			this.props.getUserData(this.props.idNumber)
 		}
+
+		if( (this.props.jobs).length < 1 ){
+			this.props.getJobs()
+		}
 	}
 
 	async componentWillReceiveProps(nextProps){

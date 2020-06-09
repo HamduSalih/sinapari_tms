@@ -6,6 +6,8 @@ import { HomeReducer as home } from '../Routes/Home/Modules/Home'
 import { AddDriverReducer as adddriver } from '../Routes/AddDriver/Modules/AddDriver'
 import { DriversReducer as drivers } from '../Routes/Drivers/Modules/Drivers'
 import { DriverInfoReducer as driverInfo } from '../Routes/DriverInfo/Modules/DriverInfo'
+import { JobsReducer as jobs } from '../Routes/Jobs/Modules/Jobs'
+import { JobDetailsReducer as jobDetails } from '../Routes/JobDetails/Modules/JobDetails'
 
 export const makeRootReducer = () => {
 	return combineReducers({
@@ -15,7 +17,9 @@ export const makeRootReducer = () => {
 		home,
 		adddriver,
 		drivers,
-		driverInfo
+		driverInfo,
+		jobs,
+		jobDetails
 	});
 }
 
