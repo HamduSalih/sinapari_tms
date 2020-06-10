@@ -16,7 +16,7 @@ const sinaLogo = require("../../../assets/img/sinalogo.jpg");
 export default class BidProcess extends Component{
     constructor(props){
         super(props);
-        this.state = this.props.jobDetails;
+        this.state = this.props.bidDetails;
     }
 
     componentDidMount() {

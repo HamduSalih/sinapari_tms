@@ -53,9 +53,10 @@ class ScrollContainer extends Component{
         var bidCollections = database.collection('bids');
         bidCollections.where('jobId', '==', this.state.jobId)
         .where('tripStatus', '==', 'live')
+        .where('tripStatus', '==', 'completed')
         .get()
         .then((querySnapshot)=>{
-            querySnapshot.foreach((doc)=>{
+            querySnapshot.forEach((doc)=>{
                 bidsContainer.push(doc.data())
             })
         })
@@ -84,7 +85,7 @@ class ScrollContainer extends Component{
             alert('Please add your price');
         }
         else{
-            //Actions.bidProcess({bidDetails: param});
+            Actions.bidProcess({bidDetails: param});
             console.log(param)
         }
     }
