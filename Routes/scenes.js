@@ -11,6 +11,7 @@ import DriverInfoContainer from './DriverInfo/Containers/DriverInfoContainer'
 import JobsContainer from './Jobs/Containers/JobsContainer'
 import JobDetailsContainer from './JobDetails/Containers/JobDetailsContainer'
 import BidProcessContainer from './bidProcess/Containers/BidProcessContainer'
+import MyBidsContainer from './MyBids/Containers/MyBidContainer'
 
 const scenes = Actions.create(
 	<Scene key="root">
@@ -24,6 +25,7 @@ const scenes = Actions.create(
 		<Scene key="jobs" component={JobsContainer} title="Open Jobs"/>
 		<Scene key="jobDetails" hideNavBar component={JobDetailsContainer} title="Job Details"/>
 		<Scene key="bidProcess" hideNavBar component={BidProcessContainer} title="Processing Bid"/>
+		<Scene key="myBids" component={MyBidsContainer} title="Accepted Bids"/>
 	</Scene>
 
 );
