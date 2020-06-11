@@ -15,7 +15,8 @@ const database = firebase.firestore();
 const { 
 	GET_USER_DATA,
 	GET_DRIVERS,
-	GET_JOBS
+	GET_JOBS,
+	ACCEPTED_BIDS
 	  } = constants;
 
 
@@ -86,6 +87,27 @@ export function getJobs(){
 	}
 }
 
+export function getDriverBids(companyName){
+	var bidsCollection = database.collection('bids');
+	var allBids = [];
+	return (dispatch) => {
+		bidsCollection.where('driverName', '==', companyName)
+		.where('status', '==', 'accepted')
+		.get()
+		.then((querySnapshot)=>{
+			querySnapshot.forEach((doc)=>{
+				allBids.push(doc.data());
+			})
+		})
+		.then(()=>{
+			dispatch({
+				type: ACCEPTED_BIDS,
+				payload: allBids
+			})
+		})
+	}
+}
+
 //--------------------
 //Action Handlers
 //--------------------
@@ -113,10 +135,19 @@ function handleGetJobs( state, action ){
 	})
 }
 
+function handleGetDriverBids(state, action){
+	return update(state, {
+		acceptedBids:{
+			$set: action.payload
+		}
+	})
+}
+
 const ACTION_HANDLERS = {
 	GET_USER_DATA:handleGetUserData,
 	GET_DRIVERS:handleGetDrivers,
-	GET_JOBS:handleGetJobs
+	GET_JOBS:handleGetJobs,
+	ACCEPTED_BIDS:handleGetDriverBids
 }
 const initialState = {
   region:{},

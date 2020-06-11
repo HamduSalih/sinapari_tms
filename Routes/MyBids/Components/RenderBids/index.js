@@ -10,10 +10,8 @@ const RenderBids = ({allBids}) => {
     var DATA = allBids;
     var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
-    _navigationProcess = (jobStatus, jobDetails) => {
-      if(jobStatus === 'accepted'){
-        Actions.currentJob({jobDetails: jobDetails});
-      }
+    _navigationProcess = (jobDetails) => {
+      //Actions.currentJob({jobDetails: jobDetails});
     }
 
         function Item({ title }) {

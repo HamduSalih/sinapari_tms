@@ -3,7 +3,7 @@ import React from 'react';
 const styles = {
     container: {
       flex: 1,
-      backgroundColor: '#141d48'
+      backgroundColor: '#eef0ef'
     },
     scrollView: {
       backgroundColor: '#C2185B',

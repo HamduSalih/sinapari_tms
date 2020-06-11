@@ -4,6 +4,8 @@ import {
 	
 } from "../Modules/MyBids";
 const mapStateToProps = (state) => ({
+    userData: state.home.userData,
+    acceptedBids: state.home.acceptedBids
 });
 
 const mapActionCreators = {

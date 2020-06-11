@@ -31,6 +31,10 @@ class Home extends React.Component{
 		if( (this.props.drivers).length < 1 ){
 			this.props.getDrivers(companyName)
 		}
+		
+		if((this.props.acceptedBids).length < 1){
+			this.props.getDriverBids(companyName)
+		}
 		//console.log((nextProps.userData).companyName)
 	}
 

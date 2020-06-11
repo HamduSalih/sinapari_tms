@@ -29,7 +29,25 @@ class MyBids extends React.Component{
 		return(
 			<Container>
 				<View style={{flex:1}}>
-					<Text>Hello World</Text>
+					{
+						(this.props.acceptedBids).length < 1 &&
+						<View style={{
+							flex:1, justifyContent:'center', alignItems:'center'
+						}}>
+							<Text style={{
+								width:'100%',
+								textAlign:'center',
+								fontSize:14,
+								lineHeight: 16
+							}}>You don't have any accepted bid. Keep trying and ALL THE BEST Partner</Text>
+						</View>
+					}
+					{
+						(this.props.acceptedBids).length > 0 &&
+						<RenderBids 
+							allBids={this.props.acceptedBids}
+						/>
+					}
 				</View>
 				<BottomTab />
 			</Container>
