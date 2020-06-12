@@ -13,6 +13,7 @@ const styles = {
     },
     locView: {
       flexDirection: 'row',
+      
     },
     locIcon: {
       marginRight: 10,

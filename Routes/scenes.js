@@ -12,6 +12,7 @@ import JobsContainer from './Jobs/Containers/JobsContainer'
 import JobDetailsContainer from './JobDetails/Containers/JobDetailsContainer'
 import BidProcessContainer from './bidProcess/Containers/BidProcessContainer'
 import MyBidsContainer from './MyBids/Containers/MyBidContainer'
+import AssignJobsContainer from './AssignJobs/Containers/AssignJobsContainer'
 
 const scenes = Actions.create(
 	<Scene key="root">
@@ -26,6 +27,7 @@ const scenes = Actions.create(
 		<Scene key="jobDetails" hideNavBar component={JobDetailsContainer} title="Job Details"/>
 		<Scene key="bidProcess" hideNavBar component={BidProcessContainer} title="Processing Bid"/>
 		<Scene key="myBids" component={MyBidsContainer} title="Accepted Bids"/>
+		<Scene key="assignJobs" component={AssignJobsContainer} title="Select Drivers"/>
 	</Scene>
 
 );

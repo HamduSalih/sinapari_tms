@@ -10,6 +10,7 @@ import { JobsReducer as jobs } from '../Routes/Jobs/Modules/Jobs'
 import { JobDetailsReducer as jobDetails } from '../Routes/JobDetails/Modules/JobDetails'
 import { BidProcessReducer as bidProcess } from '../Routes/bidProcess/Modules/BidProcess'
 import { MyBidsReducer as myBids } from '../Routes/MyBids/Modules/MyBids'
+import { AssignJobsReducer as assignJobs } from '../Routes/AssignJobs/Modules/AssignJobs'
 
 
 export const makeRootReducer = () => {
@@ -24,7 +25,8 @@ export const makeRootReducer = () => {
 		jobs,
 		jobDetails,
 		bidProcess,
-		myBids
+		myBids,
+		assignJobs
 	});
 }
 

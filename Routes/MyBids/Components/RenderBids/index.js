@@ -10,21 +10,17 @@ const RenderBids = ({allBids}) => {
     var DATA = allBids;
     var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
-    _navigationProcess = (jobDetails) => {
-      //Actions.currentJob({jobDetails: jobDetails});
-    }
-
         function Item({ title }) {
           return (
             <Card>
               <TouchableOpacity
-                onPress={this._navigationProcess.bind(this, title.status, title)}
+                onPress={()=>Actions.assignJobs()}
               >
-                <View style={styles.locView}>
+                <View style={[styles.locView, {backgroundColor: '#eef0ef', padding:10}]}>
                     <Text style={{width: '50%'}}>{title.goodsDescription}</Text>
-                    <Text style={{width: '50%', textAlign: 'right', marginBottom: 10, textTransform: 'capitalize'}}>{title.status}</Text>
+                    <Text style={{width: '50%', textAlign: 'right', textTransform: 'capitalize'}}>{title.status}</Text>
                 </View>
-                <View style={{marginBottom: 15}}>
+                <View style={{marginBottom: 15, padding:10}}>
                     <Text>Client: { title.client }</Text>
                     <Text>Amount Bid: { title.amount }</Text>
                 </View>
