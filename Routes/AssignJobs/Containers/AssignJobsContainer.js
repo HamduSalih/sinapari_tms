@@ -6,7 +6,7 @@ import {
 //states from modules home.js
 const mapStateToProps = (state) => ({
 	userData: state.home.userData || {},
-	drivers: state.home.drivers || []
+	inactiveDrivers: state.home.inactiveDrivers || []
 });
 
 const mapActionCreators = {

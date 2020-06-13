@@ -14,7 +14,7 @@ const RenderBids = ({allBids}) => {
           return (
             <Card>
               <TouchableOpacity
-                onPress={()=>Actions.assignJobs()}
+                onPress={()=>Actions.assignJobs({jobDetails: title})}
               >
                 <View style={[styles.locView, {backgroundColor: '#eef0ef', padding:10}]}>
                     <Text style={{width: '50%'}}>{title.goodsDescription}</Text>

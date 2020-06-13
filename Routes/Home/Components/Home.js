@@ -30,6 +30,7 @@ class Home extends React.Component{
 		var companyName = await (nextProps.userData).companyName
 		if( (this.props.drivers).length < 1 ){
 			this.props.getDrivers(companyName)
+			this.props.getInactiveDrivers(companyName)
 		}
 		
 		if((this.props.acceptedBids).length < 1){

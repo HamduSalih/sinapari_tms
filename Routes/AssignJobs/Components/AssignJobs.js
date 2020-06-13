@@ -7,7 +7,25 @@ export default class AssignJobs extends Component{
     render(){
         return(
             <View style={{flex:1, backgroundColor:'#eef0ef'}}>
-                <Text>Hello World</Text>
+                {
+                    (this.props.inactiveDrivers).length < 1 &&
+                    (this.props.inactiveDrivers).length < parseInt((this.props.jobDetails).number_of_trucks) &&
+                    <View style={{
+                        flex:1, justifyContent:'center', alignItems:'center'
+                    }}>
+                        <Text style={{
+                            width:'100%',
+                            textAlign:'center',
+                            fontSize:14,
+                            lineHeight: 16
+                        }}>All your drivers are on the road. Excellent Job</Text>
+                    </View>
+                    ||
+                    <RenderJobs 
+                        userData={this.props.userData}
+                        drivers={this.props.inactiveDrivers}
+                        jobDetails={this.props.jobDetails}
+                }
             </View>
         )
     }

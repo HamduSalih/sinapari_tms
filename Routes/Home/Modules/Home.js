@@ -16,7 +16,8 @@ const {
 	GET_USER_DATA,
 	GET_DRIVERS,
 	GET_JOBS,
-	ACCEPTED_BIDS
+	ACCEPTED_BIDS,
+	GET_INACTIVE_DRIVERS
 	  } = constants;
 
 
@@ -62,6 +63,27 @@ export function getDrivers(companyName){
 			dispatch({
 				type:GET_DRIVERS,
 				payload: drivers
+			})
+		})
+	}
+}
+
+export function getInactiveDrivers(companyName){
+	var tmsDrivers = database.collection('tms_drivers')
+	var inactiveDrivers = []
+	return(dispatch)=>{
+		tmsDrivers.where('company', '==', companyName)
+		.where('status', '==', 'inactive')
+		.get()
+		.then((querySnapshot)=>{
+			querySnapshot.forEach((doc)=>{
+				inactiveDrivers.push(doc.data())
+			})
+		})
+		.then(()=>{
+			dispatch({
+				type:GET_INACTIVE_DRIVERS,
+				payload: inactiveDrivers
 			})
 		})
 	}
@@ -127,6 +149,14 @@ function handleGetDrivers( state, action ){
 	})
 }
 
+function handleGetInactiveDrivers( state, action ){
+	return update( state, {
+		inactiveDrivers:{
+			$set: action.payload
+		}
+	})
+}
+
 function handleGetJobs( state, action ){
 	return update( state, {
 		jobs:{
@@ -147,7 +177,8 @@ const ACTION_HANDLERS = {
 	GET_USER_DATA:handleGetUserData,
 	GET_DRIVERS:handleGetDrivers,
 	GET_JOBS:handleGetJobs,
-	ACCEPTED_BIDS:handleGetDriverBids
+	ACCEPTED_BIDS:handleGetDriverBids,
+	GET_INACTIVE_DRIVERS:handleGetInactiveDrivers
 }
 const initialState = {
   region:{},
