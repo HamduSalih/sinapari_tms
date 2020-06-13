@@ -24,7 +24,7 @@ export default class AssignJobs extends Component{
                     <RenderJobs 
                         userData={this.props.userData}
                         drivers={this.props.inactiveDrivers}
-                        jobDetails={this.props.jobDetails}
+                        jobDetails={this.props.jobDetails}/>
                 }
             </View>
         )

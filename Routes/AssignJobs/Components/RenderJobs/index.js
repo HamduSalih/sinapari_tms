@@ -15,8 +15,11 @@ const RenderJobs = ({drivers, jobDetails, userData}) => {
   //to be used to render all jobs with cards
   
   var jobDetails = jobDetails
+  var iteration = parseInt(jobDetails.number_of_trucks)
+  var iterationRef = 0
   
   async function _assignJob(param){
+    iterationRef = iterationRef + 1
     const randomBytes = await Random.getRandomBytesAsync(9);
         var i = 0;
         var bidId = '';
@@ -28,15 +31,15 @@ const RenderJobs = ({drivers, jobDetails, userData}) => {
       bidId: bidId,
       amount: null,
       jobId: jobDetails.jobId,
-      driverId: 'N/A',
-      driverName: 'N/A',
-      truck_number: 'N/A',
+      driverId: param.driver_license,
+      driverName: param.fullname,
+      truck_number: param.truck_number,
       rating: 'N/A',
-      phone_number: 'N/A',
+      phone_number: param.phone_number,
       companyName: userData.companyName,
       client_number: jobDetails.client_number,
       paid: false,
-      status: 'pending',
+      status: 'accepted',
       goodsDescription: jobDetails.goodsDescription,
       pickUpAddress: {
           address: jobDetails.pickUpAddress.address,
@@ -51,7 +54,6 @@ const RenderJobs = ({drivers, jobDetails, userData}) => {
           time: jobDetails.dropOffAddress.time
       },
       client: jobDetails.client,
-      number_of_trucks: jobDetails.number_of_trucks,
       tripStatus: null,
       ownerStatus: null
   }
