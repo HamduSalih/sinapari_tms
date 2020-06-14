@@ -7,8 +7,12 @@ import Entypo from '@expo/vector-icons/Entypo';
 import { Actions } from 'react-native-router-flux';
 import { Button } from 'native-base'
 import { useCardAnimation } from 'react-navigation-stack';
+import * as firebase from 'firebase';
+import '@firebase/firestore';
 
-const RenderJobs = ({drivers, jobDetails, userData}) => {
+const database = firebase.firestore();
+
+const RenderJobs = ({drivers, jobDetails, userData, assignedDriverBid}) => {
   
 
   var DATA = drivers //pass allJobs array to data variable 
@@ -17,6 +21,18 @@ const RenderJobs = ({drivers, jobDetails, userData}) => {
   var jobDetails = jobDetails
   var iteration = parseInt(jobDetails.number_of_trucks)
   var iterationRef = 0
+
+  function removeCompanyBid(jobDetails){
+    collections = database.collection('bids')
+    collections.where('driverName', '==', jobDetails.companyName)
+				.where('jobId', '==', jobDetails.jobId)
+				.get()
+				.then((querySnapshot)=>{
+					querySnapshot.forEach((doc)=>{
+						collections.doc(doc.id).delete()
+					})
+				})
+  }
   
   async function _assignJob(param){
     iterationRef = iterationRef + 1
@@ -29,7 +45,7 @@ const RenderJobs = ({drivers, jobDetails, userData}) => {
         }
     var driverJobDetails = {
       bidId: bidId,
-      amount: null,
+      amount: jobDetails.amount,
       jobId: jobDetails.jobId,
       driverId: param.driver_license,
       driverName: param.fullname,
@@ -57,7 +73,14 @@ const RenderJobs = ({drivers, jobDetails, userData}) => {
       tripStatus: null,
       ownerStatus: null
   }
-    console.log(driverJobDetails)
+    if(iterationRef <= iteration){
+      assignedDriverBid(driverJobDetails)
+      if(iterationRef == iteration){
+        removeCompanyBid(driverJobDetails)
+      }
+    }else{
+      alert('Number of Trucks reached')
+    }
     //Actions.currentJob({bidDetails: jobBids});
   }
 
