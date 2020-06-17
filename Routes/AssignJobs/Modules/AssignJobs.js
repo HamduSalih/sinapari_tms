@@ -31,7 +31,7 @@ export function assignedDriverBid(driverJobDetails){
 	var assignedDrivers = []
 	var inactiveDrivers = []
 	var docId = ''
-	return(dispatch)=>{
+	return(dispatch, store)=>{
 		bidsCollection.add(driverJobDetails)
 		.then(()=>{
 			bidsCollection.where('status', '==', 'accepted')
@@ -85,6 +85,18 @@ export function assignedDriverBid(driverJobDetails){
 					dispatch({
 						type:GET_INACTIVE_DRIVERS,
 						payload: inactiveDrivers
+					})
+				})
+			}
+			)
+			.then(()=>{
+				bidsCollection.where('driverId', '==', 'N/A')
+				.where('driverName', '==', store().home.userData.companyName)
+				.where('jobId', '==', driverJobDetails.jobId)
+				.get()
+				.then((querySnapshot)=>{
+					querySnapshot.forEach((doc)=>{
+						bidsCollection.doc(doc.id).delete()
 					})
 				})
 			})

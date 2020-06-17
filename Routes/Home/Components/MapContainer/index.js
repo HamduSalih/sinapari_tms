@@ -7,6 +7,7 @@ import MapViewDirections from 'react-native-maps-directions';
 const markerImage = require('../../../../assets/img/marker.png')
 
 export const MapContainer = ({
+	driverLocations
 	})=>{
 		
 		const GOOGLE_MAPS_APIKEY = 'AIzaSyCspx_yMJwX4bTjLXTUHebo9TwYxTaLa6E';
@@ -17,20 +18,7 @@ export const MapContainer = ({
             longitudeDelta: 4
 		}
 		
-		const testCoords = [
-			{
-				latitude: 8.1378253,
-            	longitude: -0.8189397
-			},
-			{
-				latitude: 9.3911457,
-            	longitude: -2.7061143
-			},
-			{
-				latitude: 5.8861923,
-            	longitude: -0.6566057
-			}
-		]
+		const testCoords = driverLocations
 
 		return(
 			<MapView
@@ -48,6 +36,7 @@ export const MapContainer = ({
 								key={index}
 								coordinate={{latitude:obj.latitude, longitude:obj.longitude}}
 								pinColor='#141d48'
+								title={obj.name}
 							/>
 						)
 					})

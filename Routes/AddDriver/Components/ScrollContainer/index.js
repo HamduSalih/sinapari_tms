@@ -30,6 +30,8 @@ export default class ScrollContainer extends React.Component{
         }
         const locations = {
             id: this.state.driver_license,
+            name: this.state.fullname,
+            company: this.state.companyName,
             lat: 5.5974404,
             long: -0.2200726,
             geocode: null

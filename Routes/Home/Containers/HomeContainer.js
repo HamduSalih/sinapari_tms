@@ -5,7 +5,8 @@ import {
 	getDrivers,
 	getJobs,
 	getDriverBids,
-	getInactiveDrivers
+	getInactiveDrivers,
+	driversLocations
 } from "../Modules/Home";
 //states from modules home.js
 const mapStateToProps = (state) => ({
@@ -13,7 +14,8 @@ const mapStateToProps = (state) => ({
 	drivers: state.home.drivers || [],
 	jobs: state.home.jobs || [],
 	acceptedBids: state.home.acceptedBids || [],
-	inactiveDrivers: state.home.inactiveDriver || []
+	inactiveDrivers: state.home.inactiveDriver || [],
+	docIds: state.home.docIds || []
 });
 
 const mapActionCreators = {
@@ -21,6 +23,7 @@ const mapActionCreators = {
 	getDrivers,
 	getJobs,
 	getDriverBids,
-	getInactiveDrivers
+	getInactiveDrivers,
+	driversLocations
 };
 export default connect(mapStateToProps, mapActionCreators)(Home);

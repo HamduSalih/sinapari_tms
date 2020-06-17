@@ -17,7 +17,8 @@ const {
 	GET_DRIVERS,
 	GET_JOBS,
 	ACCEPTED_BIDS,
-	GET_INACTIVE_DRIVERS
+	GET_INACTIVE_DRIVERS,
+	DRIVERS_LOCATION
 	  } = constants;
 
 
@@ -130,6 +131,26 @@ export function getDriverBids(companyName){
 	}
 }
 
+export function driversLocations(companyName){
+	var locationsCollection = database.collection('locations')
+	var docIds = []
+	return (dispatch)=>{
+		locationsCollection.where('company', '==', companyName)
+		.get()
+		.then((querySnapshot)=>{
+			querySnapshot.forEach((doc)=>{
+				docIds.push(doc.id)
+			})
+		})
+		.then(()=>{
+			dispatch({
+				type: DRIVERS_LOCATION,
+				payload: docIds
+			})
+		})
+	}
+}
+
 //--------------------
 //Action Handlers
 //--------------------
@@ -173,12 +194,21 @@ function handleGetDriverBids(state, action){
 	})
 }
 
+function handleGetAllDriverLocation(state, action){
+	return update(state, {
+		docIds:{
+			$set: action.payload
+		}
+	})
+}
+
 const ACTION_HANDLERS = {
 	GET_USER_DATA:handleGetUserData,
 	GET_DRIVERS:handleGetDrivers,
 	GET_JOBS:handleGetJobs,
 	ACCEPTED_BIDS:handleGetDriverBids,
-	GET_INACTIVE_DRIVERS:handleGetInactiveDrivers
+	GET_INACTIVE_DRIVERS:handleGetInactiveDrivers,
+	DRIVERS_LOCATION:handleGetAllDriverLocation
 }
 const initialState = {
   region:{},
