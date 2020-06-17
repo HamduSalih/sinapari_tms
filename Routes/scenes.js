@@ -29,7 +29,7 @@ const scenes = Actions.create(
 		<Scene key="bidProcess" hideNavBar component={BidProcessContainer} title="Processing Bid"/>
 		<Scene key="myBids" component={MyBidsContainer} title="Accepted Bids"/>
 		<Scene key="assignJobs" component={AssignJobsContainer} title="Select Drivers"/>
-		<Scene key="currentJobs" hideNavBar component={CurrentJobsContainer} title="Current Jobs"/>
+		<Scene key="currentJobs" component={CurrentJobsContainer} title="Current Jobs"/>
 	</Scene>
 
 );

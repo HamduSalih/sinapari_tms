@@ -31,7 +31,7 @@ export function getActiveDrivers(){
         .where('company', '==', store().home.userData.companyName)
         .onSnapshot((querySnapshot)=>{
             var activeDrivers = []
-            querySnapshot((doc)=>{
+            querySnapshot.forEach((doc)=>{
                 activeDrivers.push(doc.data())
             })
             dispatch({
