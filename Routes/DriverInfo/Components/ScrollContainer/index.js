@@ -118,14 +118,13 @@ class ScrollContainer extends Component{
                         backgroundColor: '#141d48',
                         borderRadius: 50
                     }}
-                        onPress={ this.onPressEvent }
                     >
                         <Text style={{
                             color: 'white',
                             textAlign: 'center',
                             padding: 7,
                             fontSize: 17
-                        }}>{this.state.buttonText}</Text>
+                        }}>Dismiss Driver</Text>
                     </TouchableOpacity>
                 </View>                 
             </View>

@@ -39,9 +39,9 @@ const RenderJobs = ({drivers}) => {
             <Button style={{
                 backgroundColor:'#141d48'
               }}
-              onPress={()=>Actions.driverInfo({driverInfo: title})}
+              onPress={()=>Actions.selectedJob({driverInfo: title})}
             >
-              <Text style={{textAlign:'center', width:'100%', color:'white'}}>Details</Text>
+              <Text style={{textAlign:'center', width:'100%', color:'white'}}>View</Text>
             </Button>
           </View>
         </View>  

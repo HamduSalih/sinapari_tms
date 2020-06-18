@@ -14,6 +14,7 @@ import BidProcessContainer from './bidProcess/Containers/BidProcessContainer'
 import MyBidsContainer from './MyBids/Containers/MyBidContainer'
 import AssignJobsContainer from './AssignJobs/Containers/AssignJobsContainer'
 import CurrentJobsContainer from './CurrentJobs/Containers/CurrentJobsContainer'
+import SelectedJobContainer from './SelectedJobDetails/Containers/SelectedJobContainer'
 
 const scenes = Actions.create(
 	<Scene key="root">
@@ -30,6 +31,7 @@ const scenes = Actions.create(
 		<Scene key="myBids" component={MyBidsContainer} title="Accepted Bids"/>
 		<Scene key="assignJobs" component={AssignJobsContainer} title="Select Drivers"/>
 		<Scene key="currentJobs" component={CurrentJobsContainer} title="Current Jobs"/>
+		<Scene key="selectedJob" hideNavBar component={SelectedJobContainer} title="Live Trip"/>
 	</Scene>
 
 );
