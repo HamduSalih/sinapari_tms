@@ -32,7 +32,10 @@ export default class ClientProfile extends Component{
         return(
             <KeyboardAvoidingView
                 style={styles.container}>
-                <Text>Working</Text>
+                <FormComponents 
+                    userData={this.props.userData}
+                    updateProfile={this.props.updateProfile}
+                />
                 <BottomTab />
             </KeyboardAvoidingView>
 
@@ -43,5 +46,6 @@ export default class ClientProfile extends Component{
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        justifyContent: 'center'
     },
 })

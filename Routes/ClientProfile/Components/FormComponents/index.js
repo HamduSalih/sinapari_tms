@@ -16,6 +16,7 @@ export default class FormComponents extends React.Component{
 
     _updateProfile = (data) => {
         this.props.updateProfile(data)
+        //console.log(data)
     }
 
     render(){

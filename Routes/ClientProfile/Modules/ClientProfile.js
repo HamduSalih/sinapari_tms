@@ -24,7 +24,7 @@ const LONGITUDE_DELTA = 0.035;
 //Actions
 //---------------
 export function updateProfile(data){
-	var collections = database.collection('clients')
+	var collections = database.collection('tms_users')
 	var docId = ''
 	return(dispatch)=>{
 		collections.where('id_number', '==', data.clientId)

@@ -5,6 +5,7 @@ import {
 } from "../Modules/ClientProfile";
 //states from modules home.js
 const mapStateToProps = (state) => ({
+	userData: state.home.userData
 });
 
 const mapActionCreators = {
