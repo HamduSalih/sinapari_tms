@@ -44,8 +44,8 @@ export default class SelectedJobDetails extends Component{
                 bidDetail.push(doc.data())
             })
             this.setState({bidDetails: bidDetail})
-            console.log(this.state.bidDetails)
-            console.log(this.state.driverLocations)
+            //console.log(this.state.bidDetails)
+            //console.log(this.state.driverLocations)
         })
     }
 
@@ -77,7 +77,7 @@ export default class SelectedJobDetails extends Component{
                                 driverLocations={this.state.driverLocations}
                             />
                             <ScrollContainer 
-                                bidDetails={this.props.bidDetails}
+                                bidDetails={this.state.bidDetails}
                             />
                         </View>
                     }

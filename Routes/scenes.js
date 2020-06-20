@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet } from 'react-native';
-import { Actions, Scene, ActionConst } from "react-native-router-flux";
+import { Actions, Scene, ActionConst, Drawer } from "react-native-router-flux";
 import LoginContainer from './Login/Containers/LoginContainer'
 import RegisterContainer from './Register/Containers/RegisterContainer'
 import RegProcessContainer from './RegProcess/Containers/RegProcessContainer'
@@ -15,9 +15,27 @@ import MyBidsContainer from './MyBids/Containers/MyBidContainer'
 import AssignJobsContainer from './AssignJobs/Containers/AssignJobsContainer'
 import CurrentJobsContainer from './CurrentJobs/Containers/CurrentJobsContainer'
 import SelectedJobContainer from './SelectedJobDetails/Containers/SelectedJobContainer'
+import ClientProfileContainer from './ClientProfile/Containers/ClientProfileContainer'
+import SideMenu from '../Navigations/SideMenu'
+import {MaterialIcons} from '@expo/vector-icons'
+
+const icon = () => {
+	return(
+		<View style={{flex:1}}>
+			<MaterialIcons size={20} name='menu' color={'#141d48'} />
+		</View>
+	)
+}
 
 const scenes = Actions.create(
-	<Scene key="root">
+	<Drawer 
+		hideNavBar
+		key="root"
+		contentComponent={SideMenu}
+		drawerWidth={250}
+		drawerPosition="right">
+	<Scene key="main"
+		>
 		<Scene key="login" hideNavBar component={LoginContainer} title="Login"  initial/>
 		<Scene key="register" type={ActionConst.RESET} hideNavBar component={RegisterContainer} title="Register"  />
 		<Scene key="regprocess" hideNavBar component={RegProcessContainer} title="Registeration Process"  />
@@ -32,7 +50,9 @@ const scenes = Actions.create(
 		<Scene key="assignJobs" component={AssignJobsContainer} title="Select Drivers"/>
 		<Scene key="currentJobs" component={CurrentJobsContainer} title="Current Jobs"/>
 		<Scene key="selectedJob" hideNavBar component={SelectedJobContainer} title="Live Trip"/>
-	</Scene>
+		<Scene key="clientProfile" component={ClientProfileContainer} title="Update Profile"/>
+	</Scene>	
+	</Drawer>
 
 );
 

@@ -140,8 +140,9 @@ class ScrollContainer extends Component{
                             color: 'white',
                             textAlign: 'center',
                             padding: 7,
-                            fontSize: 17
-                        }}>{this.state.buttonText}</Text>
+                            fontSize: 17,
+                            textTransform:'capitalize'
+                        }}>{this.props.bidDetails[0].tripStatus}</Text>
                     </TouchableOpacity>
                 </View>                 
             </View>

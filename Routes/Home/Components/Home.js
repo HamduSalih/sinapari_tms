@@ -33,6 +33,7 @@ class Home extends React.Component{
 		if( (this.props.jobs).length < 1 ){
 			this.props.getJobs()
 		}		
+		//console.log(this.props.idNumber)
 	}
 
 	async componentWillReceiveProps(nextProps){

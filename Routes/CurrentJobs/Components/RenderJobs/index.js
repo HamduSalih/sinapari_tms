@@ -39,7 +39,7 @@ const RenderJobs = ({drivers}) => {
             <Button style={{
                 backgroundColor:'#141d48'
               }}
-              onPress={()=>Actions.selectedJob({driverInfo: title})}
+              onPress={()=>Actions.drawerMenu()}
             >
               <Text style={{textAlign:'center', width:'100%', color:'white'}}>View</Text>
             </Button>
