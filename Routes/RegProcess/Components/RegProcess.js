@@ -41,12 +41,21 @@ export default class RegProcess extends React.Component{
     //first 
     _firstRegister = async() => {
         const userData = this.state;
-        
+        const userAccount = {
+            number: userData.phone_number,
+            total_income: null,
+            id_number: userData.id_number,
+            amountIn: null,
+            amountOut: null
+        };
         console.log(this.state)
 
         database.collection('tms_users').add(userData)
         .then(()=>{
             this.props.getUserData(userData.id_number);
+        })
+        .then(()=>{
+            database.collection('accounts').doc(this.state.driver_license).set(userAccount);
         })
         .then(()=>{
             Actions.home();

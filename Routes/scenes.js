@@ -16,16 +16,11 @@ import AssignJobsContainer from './AssignJobs/Containers/AssignJobsContainer'
 import CurrentJobsContainer from './CurrentJobs/Containers/CurrentJobsContainer'
 import SelectedJobContainer from './SelectedJobDetails/Containers/SelectedJobContainer'
 import ClientProfileContainer from './ClientProfile/Containers/ClientProfileContainer'
+import ReportContainer from './Report/Containers/ReportContainer'
+
+
 import SideMenu from '../Navigations/SideMenu'
 import {MaterialIcons} from '@expo/vector-icons'
-
-const icon = () => {
-	return(
-		<View style={{flex:1}}>
-			<MaterialIcons size={20} name='menu' color={'#141d48'} />
-		</View>
-	)
-}
 
 const scenes = Actions.create(
 	<Drawer 
@@ -51,6 +46,7 @@ const scenes = Actions.create(
 		<Scene key="currentJobs" component={CurrentJobsContainer} title="Current Jobs"/>
 		<Scene key="selectedJob" hideNavBar component={SelectedJobContainer} title="Live Trip"/>
 		<Scene key="clientProfile" component={ClientProfileContainer} title="Update Profile"/>
+		<Scene key="report" component={ReportContainer} title="Make a Report"/>
 	</Scene>	
 	</Drawer>
 

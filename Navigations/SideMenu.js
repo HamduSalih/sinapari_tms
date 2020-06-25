@@ -14,6 +14,12 @@ export default class SideMenu extends React.Component{
             subTitle:'',
             icon:'home',
             sceneKey: 'clientProfile'
+        },
+        {
+            title:'Talk to Us',
+            subTitle:'',
+            icon:'home',
+            sceneKey: 'report'
         }
     ]
         return(
