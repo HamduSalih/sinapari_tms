@@ -31,16 +31,14 @@ const LONGITUDE_DELTA = 0.035;
 //---------------
 export function getUserData(idNumber){
 	var tmsCollection = database.collection('tms_users')
-	var userData
+	
 	return(dispatch)=>{
 		tmsCollection.where('id_number', '==', idNumber)
-		.get()
-		.then((querySnapshot)=>{
+		.onSnapshot((querySnapshot)=>{
+			var userData
 			querySnapshot.forEach((doc)=>{
 				userData = doc.data()
 			})
-		})
-		.then(()=>{
 			dispatch({
 				type: GET_USER_DATA,
 				payload: userData
@@ -51,16 +49,14 @@ export function getUserData(idNumber){
 
 export function getDrivers(companyName){
 	var tmsDrivers = database.collection('tms_drivers')
-	var drivers = []
+	
 	return(dispatch)=>{
 		tmsDrivers.where('company', '==', companyName)
-		.get()
-		.then((querySnapshot)=>{
+		.onSnapshot((querySnapshot)=>{
+			var drivers = []
 			querySnapshot.forEach((doc)=>{
 				drivers.push(doc.data())
 			})
-		})
-		.then(()=>{
 			dispatch({
 				type:GET_DRIVERS,
 				payload: drivers
@@ -71,17 +67,15 @@ export function getDrivers(companyName){
 
 export function getInactiveDrivers(companyName){
 	var tmsDrivers = database.collection('tms_drivers')
-	var inactiveDrivers = []
+	
 	return(dispatch)=>{
 		tmsDrivers.where('company', '==', companyName)
 		.where('status', '==', 'inactive')
-		.get()
-		.then((querySnapshot)=>{
+		.onSnapshot((querySnapshot)=>{
 			querySnapshot.forEach((doc)=>{
+				var inactiveDrivers = []
 				inactiveDrivers.push(doc.data())
 			})
-		})
-		.then(()=>{
 			dispatch({
 				type:GET_INACTIVE_DRIVERS,
 				payload: inactiveDrivers
@@ -92,16 +86,14 @@ export function getInactiveDrivers(companyName){
 
 export function getJobs(){
 	var jobsCollection = database.collection('jobs')
-	var jobs = []
+	
 	return(dispatch)=>{
 		jobsCollection.where('status', '==', 'not live')
-		.get()
-		.then((querySnapshot)=>{
+		.onSnapshot((querySnapshot)=>{
+			var jobs = []
 			querySnapshot.forEach((doc)=>{
 				jobs.push(doc.data())
 			})
-		})
-		.then(()=>{
 			dispatch({
 				type:GET_JOBS,
 				payload: jobs
@@ -112,17 +104,15 @@ export function getJobs(){
 
 export function getDriverBids(companyName){
 	var bidsCollection = database.collection('bids');
-	var allBids = [];
+	
 	return (dispatch) => {
 		bidsCollection.where('driverName', '==', companyName)
 		.where('status', '==', 'accepted')
-		.get()
-		.then((querySnapshot)=>{
+		.onSnapshot((querySnapshot)=>{
+			var allBids = [];
 			querySnapshot.forEach((doc)=>{
 				allBids.push(doc.data());
 			})
-		})
-		.then(()=>{
 			dispatch({
 				type: ACCEPTED_BIDS,
 				payload: allBids

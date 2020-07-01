@@ -19,11 +19,57 @@ export default class Login extends Component{
     }
 
     _navigate = () => {
-        let params = this.state
-        Actions.register({userInfo: params})
+        var version = "1.0.0"
+            var versionControl = database.collection('versionControl').doc('versionControl')
+            versionControl
+            .get()
+            .then((doc)=>{
+                if((doc.data()).version == version){
+                    let params = this.state
+                    Actions.register({userInfo: params})
+                }else{
+                    if(alert('Please close app and update to the latest version')){
+
+                    }
+                }
+            })
+            .catch((error)=>{
+                console.log(error)
+            })
     }
 
     _login = async(idNumber) => {
+            var version = "1.0.0"
+            var versionControl = database.collection('versionControl').doc('versionControl')
+            versionControl
+            .get()
+            .then((doc)=>{
+                if((doc.data()).version == version){
+                    var tmsCollection = database.collection('tms_users')
+
+                    tmsCollection.where('username', '==', this.state.username)
+                    .where('password', '==', this.state.password)
+                    .get()
+                    .then(async(querySnapshot)=>{
+                     querySnapshot.forEach(async(doc)=>{
+                            idNumber = doc.data().id_number;
+                        })
+                    })
+                 .then(async()=>{
+                        Actions.home({idNumber: idNumber});
+                    })
+                    .catch((error)=>{
+                        console.log(error)
+                    })
+                }else{
+                    if(alert('Please close app and update to the latest version')){
+
+                    }
+                }
+            })
+            .catch((error)=>{
+                console.log(error)
+            })
         var tmsCollection = database.collection('tms_users')
 
         tmsCollection.where('username', '==', this.state.username)
