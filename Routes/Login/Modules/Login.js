@@ -6,7 +6,7 @@ import * as firebase from 'firebase';
 import '@firebase/firestore';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBICeaakAkGPlVOVjObj7BDaoZvmgibDA8",
+    apiKey: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
     authDomain: "sinapari-6dbbd.firebaseapp.com",
     databaseURL: "https://sinapari-6dbbd.firebaseio.com",
     projectId: "sinapari-6dbbd",
