@@ -10,7 +10,7 @@ export const MapContainer = ({
 	driverLocations
 	})=>{
 		
-		const GOOGLE_MAPS_APIKEY = 'AIzaSyCspx_yMJwX4bTjLXTUHebo9TwYxTaLa6E';
+		const GOOGLE_MAPS_APIKEY = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
         const region={
             latitude: 8.2790473,
             longitude: -1.1188077,
